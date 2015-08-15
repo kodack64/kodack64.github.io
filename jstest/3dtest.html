@@ -1,0 +1,104 @@
+﻿<html>
+<head>
+    <title> Three.js test</title>
+    <style>
+        body {margin: 0;}
+        canvas { width: 100% ; height : 100%}
+    </style>
+</head>
+<body>
+    <script src="js/three.min.js"></script>
+    <script src="js/TrackballControls.js"></script>
+    <script>
+        var scene = new THREE.Scene();
+
+        // camera
+        {
+            var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+            controls = new THREE.TrackballControls(camera);
+            controls.rotateSpeed = 10;
+        }
+
+        // renderer
+        {
+            var renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+        }
+
+        var radius = 2;
+
+        // sphere wire frame
+        {
+            var segment = 10;
+            var g_Sphere = new THREE.SphereGeometry(radius, segment * 2, segment, 0, Math.PI * 2, 0, Math.PI);
+            var m_WhiteFrame = new THREE.MeshPhongMaterial({ color: 0x111111, wireframe: true });
+            var sphere = new THREE.Mesh(g_Sphere, m_WhiteFrame);
+            scene.add(sphere);
+        }
+
+        // axis
+        {
+            var axisRad = 0.01;
+            var g_xaxis = new THREE.CylinderGeometry(axisRad, axisRad, radius * 2, segment, segment, false, 0, Math.PI * 2);
+            var m_WhiteAxis = new THREE.MeshPhongMaterial({ color: 0x111111, wireframe: false });
+            var xaxis = new THREE.Mesh(g_xaxis, m_WhiteAxis);
+            var yaxis = new THREE.Mesh(g_xaxis, m_WhiteAxis);
+            var zaxis = new THREE.Mesh(g_xaxis, m_WhiteAxis);
+            xaxis.rotation.set(Math.PI / 2, 0, 0);
+            yaxis.rotation.set(0, 0, Math.PI / 2);
+            scene.add(xaxis); scene.add(yaxis); scene.add(zaxis);
+        }
+
+        // arrow
+        {
+            var rootrad = 0.03;
+            var arrowHeight = radius / 10;
+            var arrowBottom = radius / 10;
+            var g_ArrowTop = new THREE.CylinderGeometry(0, arrowBottom, arrowHeight, segment, segment, false, 0, Math.PI * 2);
+            var g_ArrowBottom = new THREE.CylinderGeometry(rootrad, rootrad, radius - arrowHeight, segment, segment, false, 0, Math.PI * 2);
+            var m_Blue = new THREE.MeshPhongMaterial({ color: 0x0000ff });
+            var arrowTop = new THREE.Mesh(g_ArrowTop, m_Blue);
+            arrowTop.position.set(0, radius / 2, 0);
+            THREE.GeometryUtils.merge(g_ArrowBottom, arrowTop);
+            g_ArrowBottom.applyMatrix(new THREE.Matrix4().makeTranslation(0, radius / 2 - arrowHeight / 2, 0));
+            var arrow = new THREE.Mesh(g_ArrowBottom, m_Blue);
+            scene.add(arrow);
+            arrow.useQuaternion = true;
+        }
+
+        // lighting
+        {
+            var directionalLight = new THREE.DirectionalLight(0xffffff, 10);
+            directionalLight.position.x = 10;
+            directionalLight.position.y = 10;
+            directionalLight.position.z = 10;
+            scene.add(directionalLight);
+            var directionalLightOp = new THREE.DirectionalLight(0xffffff, 10);
+            directionalLightOp.position.x = -10;
+            directionalLightOp.position.y = -10;
+            directionalLightOp.position.z = -10;
+            scene.add(directionalLightOp);
+        }
+
+        var render = function () {
+            requestAnimationFrame(render);
+            arrow.rotation.y += 0.05;
+            arrow.rotation.z += 0.005;
+            renderer.render(scene, camera);
+            controls.update();
+        }
+
+        var resize = function() {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        }
+        window.addEventListener('resize', resize);
+
+        render();
+
+    </script>
+</body>
+</html>
