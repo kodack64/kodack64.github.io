@@ -1,0 +1,455 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>メタ情報とジャケットを集める · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.6.20">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="4.html" />
+    
+    
+    <link rel="prev" href="2.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    readme
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="0.html">
+            
+                <a href="0.html">
+            
+                    
+                    はじめに
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="1.html">
+            
+                <a href="1.html">
+            
+                    
+                    概要
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="2.html">
+            
+                <a href="2.html">
+            
+                    
+                    楽曲名を集める
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5" data-path="3.html">
+            
+                <a href="3.html">
+            
+                    
+                    メタ情報とジャケットを集める
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="4.html">
+            
+                <a href="4.html">
+            
+                    
+                    タグ付け/キャプション付け
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="5.html">
+            
+                <a href="5.html">
+            
+                    
+                    分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="6.html">
+            
+                <a href="6.html">
+            
+                    
+                    さいごに
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="itune.html">
+            
+                <a href="itune.html">
+            
+                    
+                    iTune Search API補遺
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="other.html">
+            
+                <a href="other.html">
+            
+                    
+                    その他のAPIの補遺
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >メタ情報とジャケットを集める</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="メタ情報とジャケットを集める">メタ情報とジャケットを集める</h1>
+<hr>
+<p>楽曲名とアーティスト名のセットは取れたので、このセットから楽曲を検索し、その楽曲のメタ情報と、ジャケット画像を取ってきます。メタ情報とジャケット画像はどちらかしか取れない場合は、同じ楽曲で別のサービスを利用して検索しもう一方を取得することができますが、メタ情報は大体どこでもくれる一方、ジャケット画像をバンバンDLさせてくれるところは実は希少です。</p>
+<p>今回はレートのバランスとDBの豊富さなどを鑑みて、殆どの情報はGracenoteから取得しました。</p>
+<h3 id="itune-search-api">iTune Search API</h3>
+<p>Appleの提供するiTune StoreのAPI。かなり条件がいいがドキュメントが控えめに言ってクソ。</p>
+<ul>
+<li>URL : <a href="https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/" target="_blank">https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/</a></li>
+<li>APIキー ：不要</li>
+<li>取れるメタ情報 : ジャンル、価格、国、発売日など</li>
+<li>ジャケット取得 ：可(600x600まで)</li>
+<li>Rate limit  : 基準はないが、負荷をかけるとIPに対するレスポンスがどんどん遅くなるらしい</li>
+<li>Pythonとの連携  : URL作ってrequestsで叩く</li>
+<li>コメント ：曲の量は非常に豊富で、APIキーが不要というのも非常に良い。しかしドキュメントが不完全で異常に不親切かつソートが変更不可。隠しクエリが存在しファミコンの裏技探しに近い苦行を強いられる。</li>
+</ul>
+<h3 id="gracenote-web-api">Gracenote Web API</h3>
+<p>Gracenoteは会社の管理する音楽データベース。iTuneでCDを入れると自動でタグ付けされるのは、このサイトからメタ情報を取ってきているから。ユーザが登録もできるので、同人音楽とかでもメタ情報はかなりある。</p>
+<ul>
+<li>URL : <a href="https://developer.gracenote.com/ja" target="_blank">https://developer.gracenote.com/ja</a></li>
+<li>APIキー ：要</li>
+<li>取れるメタ情報 : tracks(track_name,mood,tempo),genres,country,artist_type(男性複数のグループみたいな情報),released year</li>
+<li>ジャケット取得 ：可(だいたい450x450ぐらい。あったりなかったり。)</li>
+<li>Rate limit  : 発行したアプリケーションごとの規制で、メタ情報は数千/day、画像は数百/day。詳細はサーバの状況依存。</li>
+<li>Pythonとの連携  : <a href="https://github.com/cweichen/pygn" target="_blank">https://github.com/cweichen/pygn</a></li>
+<li>コメント ：曲は大抵あるがジャケットが意外とない。6割ぐらい。あとtempoはあったりなかったり。コンシューマキー発行から5分程度はキーが有効にならず、user accountの登録は出来るが検索は130 Hello Errorとかいう謎のエラーを返すという初心者殺しのトラップがあるので注意。</li>
+</ul>
+<h3 id="discogs-api">Discogs API</h3>
+<p>Discogsはユーザ投稿型の音楽データベースサイト。ジャケット画像などもユーザ投稿のもの。</p>
+<ul>
+<li>URL : <a href="https://www.discogs.com/developers/" target="_blank">https://www.discogs.com/developers/</a></li>
+<li>APIキー : 要</li>
+<li>取れるメタ情報 : country,released,genre,styles(より詳細なジャンル),lowest_price,tracklist(trackname,duration)</li>
+<li>ジャケット取得 : 可(サイズは投稿者依存、ないものもある)</li>
+<li>Rate limit :  IPごとの規制で、メタ情報は240/min、画像の取得は1000/day</li>
+<li>Pythonとの連携 : <a href="https://github.com/discogs/discogs_client" target="_blank">https://github.com/discogs/discogs_client</a></li>
+<li>コメント ：ユーザ投稿型だけあって、投稿が洋楽、アイドル、同人、オタクカルチャーなどにかなり偏っている。メタデータに関してはDiscogsのジャケット画像を除いたダンプが毎月xmlで配布されているので、こちらをDLしてAPIでimageだけ取得するとエコ。</li>
+</ul>
+<h3 id="spotify-web-api">Spotify Web API</h3>
+<p>Spotifyはストリーミング音楽配信サービスの一つ。最近日本にも進出したらしい（割に日本の曲があんまり登録されていないように見えるが大丈夫だろうか）。データベースはDiscogsに並び巨大なデータを要するEcho Nestを買収して得たものらしい。</p>
+<ul>
+<li>URL <a href="https://developer.spotify.com/web-api/" target="_blank">https://developer.spotify.com/web-api/</a></li>
+<li>APIキー : 必須ではないがないとrate limitが下がる。</li>
+<li>取れるメタ情報 : genre,popularity,release_date,trackes(track,duration)</li>
+<li>ジャケット取得 : 可</li>
+<li>Rate limit : 明記がないが、stackoverflowなどを見るに数回/secレベルは大丈夫らしい。</li>
+<li>Pythonとの連携 : <a href="https://github.com/plamere/spotipy" target="_blank">https://github.com/plamere/spotipy</a></li>
+<li>コメント : 日本語のCDが見つからないというか、そもそも日本語では検索できないのではという感じがある。日本進出に時間を書けているし日本向けのDBはまだ本番に乗っていないのかも。APIキー不要なのでAPIを試すのはすぐできる。</li>
+</ul>
+<h3 id="amazon-product-advertising-api">Amazon Product Advertising API</h3>
+<p>Amazonの商品検索APIで、「曲名」で検索してヒットする商品のサムネは多分ジャケットになっているということを利用しジャケットの画像を得ることができます。CDのタグ付けソフトで画像のリストから選ぶように言ってくる奴はこれを利用しているようです。</p>
+<ul>
+<li>URL <a href="http://webservices.amazon.com/scratchpad/index.html" target="_blank">http://webservices.amazon.com/scratchpad/index.html</a></li>
+<li>APIキー : 要</li>
+<li>取れるメタ情報 : たぶん発売年度とかは取れるのでは</li>
+<li>ジャケット取得 : 可（たまにない）</li>
+<li>Rate limit : 1/secかつ3600/hour</li>
+<li>Pythonとの連携 : <a href="https://github.com/lionheart/bottlenose" target="_blank">https://github.com/lionheart/bottlenose</a></li>
+<li>コメント : APIキーとしてAWSのルートアカウントのアクセスキーを使うことになる。したがって、このAPIのキーが漏れるとAWSの権限も漏れてクレジットカードも漏れるのは怖い。また、Amazon associates Idも必要になるため、アフィリエイトプログラムに参加する必要もある。あとなぜかrate limitを守っていてもたまに503を返すので、成功するまで1秒おきにtry catchで繰り返す必要がある。謎。</li>
+</ul>
+<h3 id="google-custom-search-apiを通してgoogle画像検索を使う">Google Custom Search API(を通してGoogle画像検索を使う)</h3>
+<p>「曲名　ジャケット」で画像検索エンジンでググればGoogleの検索結果の上位にジャケットが来るだろうというアレ。直接google画像検索のurlを叩いてスクレイピングするとgoogle先生からアク禁を食らうので、Google Custom Search APIを介して検索をしなくてはならない。</p>
+<ul>
+<li>URL : <a href="https://www.google.co.jp/search?q=hogehoge&amp;tbm=isch" target="_blank">https://www.google.co.jp/search?q=hogehoge&amp;tbm=isch</a></li>
+<li>APIキー ：要</li>
+<li>取れるメタ情報 : なし</li>
+<li>ジャケット取得 ：可(サイズはまちまち)</li>
+<li>Rate limit  : 100req/day</li>
+<li>Pythonとの連携 : やってないけどURLを叩いてjsonだかが返ってくるらしい</li>
+<li>コメント ：rate limitがちょっとこころもとないのでやってない。Yahooなどでの類似サービスも一時はAPIがあったが現在では軒並み閉鎖している模様。</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="2.html" class="navigation navigation-prev " aria-label="Previous page: 楽曲名を集める">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="4.html" class="navigation navigation-next " aria-label="Next page: タグ付け/キャプション付け">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"メタ情報とジャケットを集める","level":"1.5","depth":1,"next":{"title":"タグ付け/キャプション付け","level":"1.6","depth":1,"path":"src/4.md","ref":"src/4.md","articles":[]},"previous":{"title":"楽曲名を集める","level":"1.4","depth":1,"path":"src/2.md","ref":"src/2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"src/3.md","mtime":"2016-11-27T20:24:12.000Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-09-11T16:47:19.073Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

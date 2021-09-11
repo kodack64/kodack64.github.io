@@ -1,0 +1,436 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>iTune Search API補遺 · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.6.20">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="other.html" />
+    
+    
+    <link rel="prev" href="6.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    readme
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="0.html">
+            
+                <a href="0.html">
+            
+                    
+                    はじめに
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="1.html">
+            
+                <a href="1.html">
+            
+                    
+                    概要
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="2.html">
+            
+                <a href="2.html">
+            
+                    
+                    楽曲名を集める
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="3.html">
+            
+                <a href="3.html">
+            
+                    
+                    メタ情報とジャケットを集める
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="4.html">
+            
+                <a href="4.html">
+            
+                    
+                    タグ付け/キャプション付け
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="5.html">
+            
+                <a href="5.html">
+            
+                    
+                    分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="6.html">
+            
+                <a href="6.html">
+            
+                    
+                    さいごに
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.9" data-path="itune.html">
+            
+                <a href="itune.html">
+            
+                    
+                    iTune Search API補遺
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="other.html">
+            
+                <a href="other.html">
+            
+                    
+                    その他のAPIの補遺
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >iTune Search API補遺</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="itune-search-api">iTune Search API</h1>
+<hr>
+<p>consumer keyなどがなく無料枠で使えることから、iTune Search APIはサービスとして飛びぬけています。しかし、あまりにドキュメントが情報不足などころか誤っている箇所すらあるため、全容が分かっていません。ネットにある情報も断片的だったり、本ドキュメントの単なる翻訳だったりします。使用感を纏めておきます。</p>
+<p>APIの公式ページは <a href="https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/" target="_blank">https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/</a> にあります。</p>
+<h3 id="使い方">使い方</h3>
+<p>URLを叩くとjsonが帰ってきます。<a href="https://itunes.apple.com/search?term=君の知らない&amp;media=music&amp;country=JP" target="_blank">https://itunes.apple.com/search?term=君の知らない&amp;media=music&amp;country=JP</a> で検索すれば正しい情報が返ってきます。日本語のクエリをしっかり受け付けるというのも地味ながら非常に優れた特徴です。以下が公式に乗っているパラメータリストです。スペースで区切るとand検索になります。詳細は隠しパラメータにて。</p>
+<ul>
+<li>term:検索したいワード</li>
+<li>country:JP一択</li>
+<li>lang:言語 ja_jp一択</li>
+<li>media:返答がほしいメディアの分類　今は全部music</li>
+<li>entity:mediaの詳細な分類　今はalbum</li>
+<li>limit:返ってくる結果の最大値　最大200</li>
+<li>attribute:検索ワードが検索する対象</li>
+</ul>
+<h3 id="取得できるメタ情報">取得できるメタ情報</h3>
+<p>アルバム名やアーティスト名に加え、ジャンル、値段、トラック数、発売日、発売国などのメタ情報が取得できます。発売国から意図しない検索結果を弾けたりするのはいいです。値段も他ではなかなか取得できない情報です。</p>
+<h3 id="巨大な画像の取得">巨大な画像の取得</h3>
+<p>リクエストを送って帰ってきたjsonにはいろいろな情報が含まれていますが、ジャケット画像のurlはartworkUrl100に入っています。名前の通り、100x100のジャケット画像なのですが、機械学習ではもう少し大きい画像を用いたいです。URLのアドレスは <a href="http://is4.mzstatic.com/image/thumb/Music/v4/hogehogehoge/source/100x100bb.jpg" target="_blank">http://is4.mzstatic.com/image/thumb/Music/v4/hogehogehoge/source/100x100bb.jpg</a> となっていますが、最後のあたりを変えてやれば170,225,600あたりは取得できます。従って <a href="http://is4.mzstatic.com/image/thumb/Music/v4/02/68/2a/02682ac8-9717-3550-2d39-9b653436d473/source/600x600bb.jpg" target="_blank">http://is4.mzstatic.com/image/thumb/Music/v4/02/68/2a/02682ac8-9717-3550-2d39-9b653436d473/source/600x600bb.jpg</a> を取ってくることで大きな画像が取得できます。</p>
+<p>自身が使用した範囲では、画像ファイルに欠損のある楽曲はありませんでした。このあたりは流石にAppleという感じがあります。</p>
+<h3 id="rate-limit">Rate limit</h3>
+<p>iTune Search APIはrate limitが明記されておらず、大量にアクセスするとレスポンスが遅くなって次第に403が変えるようになるという仕様になっています。非常に雑ですが自身が使用した範囲では以下のような感じです。</p>
+<ul>
+<li>1時間に300アクセスぐらいしたあたりからレスが10秒～10分ぐらいになります。最初の数百アクセスは非常に高速です。</li>
+<li>一度遅くなると少なくとも数時間はそのままです。</li>
+<li>少なくとも数日待ったら戻ってました</li>
+</ul>
+<h3 id="隠し要素">隠し要素</h3>
+<p>iTune Search APIの最強にヤバイところは、ドキュメントに書かれていない隠し要素が大量にあります。精一杯オブラートに包んだ表現をすると、ファミコン初期のようなゲーム性が楽しめます。</p>
+<h5 id="隠しattribute">隠しattribute</h5>
+<p>attributeは検索する対象を指定するパラメータで、使えるattributeは指定したmediaに依存しています。mediaをmusicにした場合に使えるattributeはドキュメントで7個が紹介されていますが、実際には<a href="http://jmblog.jp/archives/798" target="_blank">http://jmblog.jp/archives/798</a> のサイト様の調査により</p>
+<ul>
+<li>&quot;albumTerm&quot;,&quot;mixTerm&quot;, &quot;genreTerm&quot;, &quot;completeTitle&quot;, &quot;allTitle&quot;, &quot;composerTerm&quot;, &quot;genreIndex&quot;, &quot;flavor&quot;, &quot;tier&quot;, &quot;musicTrackTerm&quot;, &quot;artistAndComposer&quot;, &quot;allArtistNames&quot;, &quot;songTerm&quot;, &quot;releaseDate&quot;, &quot;ratingIndex&quot;, &quot;artistTerm&quot;, &quot;completePlaylistTitle&quot;, &quot;ringtone&quot;, &quot;iMixTerm&quot;, &quot;matchName&quot;</li>
+</ul>
+<p>の20個の隠しパラメータが指定でき、少なくともエラー無く帰ってきます。しかし、attributeが何に対応しているのか全く謎なので、使えるのはごく一部です。特になんちゃらindex系は何を指定すれば良いのか本当に謎です。</p>
+<h5 id="最大検索件数を超える検索">最大検索件数を超える検索</h5>
+<p>limitの最大件数が200件なので、200件目より先のアイテムは取得できません。これはoffsetという隠しパラメータで回避できます。offsetを指定することでoffset番目からlimit個返るようになります。これを利用することで、rate limitの範囲内であれば全検索結果を取得できます。</p>
+<p><a href="https://itunes.apple.com/search?term=君の知らない&amp;media=music&amp;country=JP&amp;offset=1" target="_blank">https://itunes.apple.com/search?term=君の知らない&amp;media=music&amp;country=JP&amp;offset=1</a></p>
+<p>とoffsetを追加すると、offsetがない場合に比べ最初のアイテムがなくなっているのが分かると思います。</p>
+<h5 id="ジャンル">ジャンル</h5>
+<p>attributeの中にはもともとgenreIndexなるものがあります。itune genreとかで検索すると<a href="https://affiliate.itunes.apple.com/resources/documentation/genre-mapping/" target="_blank">https://affiliate.itunes.apple.com/resources/documentation/genre-mapping/</a> のページが出てくるので、数字や文字で検索できるのかと思いきや、出来ません。</p>
+<p>上記のジャンルIDで検索したい場合は、genreIdをattributeではなくパラメータとして使用します。</p>
+<p>例として、Animeを指定すれば <a href="https://itunes.apple.com/search?term=hope&amp;media=music&amp;entity=album&amp;country=JP&amp;limit=10&amp;lang=ja_jp&amp;genreId=29" target="_blank">https://itunes.apple.com/search?term=hope&amp;media=music&amp;entity=album&amp;country=JP&amp;limit=10&amp;lang=ja_jp&amp;genreId=29</a> 返ってくるのはLiSA Rising Hope - EPであり、J-Popを指定すれば <a href="https://itunes.apple.com/search?term=hope&amp;media=music&amp;entity=album&amp;country=JP&amp;limit=10&amp;lang=ja_jp&amp;genreId=27" target="_blank">https://itunes.apple.com/search?term=hope&amp;media=music&amp;entity=album&amp;country=JP&amp;limit=10&amp;lang=ja_jp&amp;genreId=27</a> で返ってくるのは山下達郎 Ray Of Hopeになります。ただし、優先度が変化されるだけで記載されているジャンルだけがフィルターされて返ってくるわけではないです。特定ジャンルをフィルターしたい場合はレスポンスのgenreTermを見て指定のジャンルだけを抜き出しましょう。</p>
+<h3 id="たぶん出来ないこと">たぶん出来ないこと</h3>
+<ul>
+<li>ソートの変更(sortパラメータの指定はできるが、結果に変化はない)</li>
+<li>検索ワードを指定しない、指定ジャンルでの全列挙(誰か出来たら教えてください)</li>
+<li>or検索</li>
+<li>複数のattributeのand検索</li>
+<li>発表年での検索</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="6.html" class="navigation navigation-prev " aria-label="Previous page: さいごに">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="other.html" class="navigation navigation-next " aria-label="Next page: その他のAPIの補遺">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"iTune Search API補遺","level":"1.9","depth":1,"next":{"title":"その他のAPIの補遺","level":"1.10","depth":1,"path":"src/other.md","ref":"src/other.md","articles":[]},"previous":{"title":"さいごに","level":"1.8","depth":1,"path":"src/6.md","ref":"src/6.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"src/itune.md","mtime":"2016-12-01T11:19:23.000Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-09-11T16:47:19.073Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

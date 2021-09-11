@@ -1,0 +1,417 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>楽曲名を集める · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.6.20">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="3.html" />
+    
+    
+    <link rel="prev" href="1.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    readme
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="0.html">
+            
+                <a href="0.html">
+            
+                    
+                    はじめに
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="1.html">
+            
+                <a href="1.html">
+            
+                    
+                    概要
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4" data-path="2.html">
+            
+                <a href="2.html">
+            
+                    
+                    楽曲名を集める
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="3.html">
+            
+                <a href="3.html">
+            
+                    
+                    メタ情報とジャケットを集める
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="4.html">
+            
+                <a href="4.html">
+            
+                    
+                    タグ付け/キャプション付け
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="5.html">
+            
+                <a href="5.html">
+            
+                    
+                    分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="6.html">
+            
+                <a href="6.html">
+            
+                    
+                    さいごに
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="itune.html">
+            
+                <a href="itune.html">
+            
+                    
+                    iTune Search API補遺
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="other.html">
+            
+                <a href="other.html">
+            
+                    
+                    その他のAPIの補遺
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >楽曲名を集める</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="楽曲名を集める">楽曲名を集める</h1>
+<hr>
+<p>まず、楽曲名を数千曲決めます。楽曲名だけだと一意にならないので、アーティスト名とまとめて取得することを目指します。アーティストをある程度取れたら、そのアーティストの楽曲を後述の検索で全て列挙しDBに加えてもいいかもしれません。</p>
+<p>このgitbookの記事の内容は以下のすべてのDBを用いています。同人誌の方の記事は商用利用っぽいのでApple RSS Generatorから集めた情報のみから統計処理しています。</p>
+<h3 id="dbから取得">DBから取得</h3>
+<p>検索するAPIを使うにも、とっかかりとなるアーティスト名なり曲名なりが必要になるので、これらはウェブから取得して成形することにしました。</p>
+<ul>
+<li><p>Jpop</p>
+<ul>
+<li>ヒット曲コレクションさま <a href="http://collection.hitsong.jp/year.php" target="_blank">http://collection.hitsong.jp/year.php</a> :  年代ごとのヒット曲を掲載している。2013年までで止まっている。</li>
+<li>レコチョクさま <a href="http://recochoku.jp/" target="_blank">http://recochoku.jp/</a> :  トップからは行けないが、&quot;レコチョク [年代名] ランキング&quot;でググれば、その2013年以降のランキング特集のページが出てくる。</li>
+</ul>
+</li>
+<li><p>アニソン</p>
+<ul>
+<li>Anison Generationさま <a href="http://anison.info/data/" target="_blank">http://anison.info/data/</a> :  アニソンが網羅されています。csvもある。</li>
+<li>Wikipedia <a href="https://ja.wikipedia.org/wiki/%E5%B9%B4%E4%BB%A3%E5%88%A5%E3%82%A2%E3%83%8B%E3%83%A1%E3%82%BD%E3%83%B3%E3%82%B0%E4%B8%80%E8%A6%A7" target="_blank">年代別アニメソング一覧</a> : の中盤あたりにある主題歌一覧みたいな場所に年代別に大量にある。すごい。</li>
+</ul>
+</li>
+</ul>
+<p>Anison GenerationさまのDBはcsvを配布しているので取扱が非常に容易です。残りはDBの形では提供されていないので、HTMLをダウンロードしてBeautifulSoupで処理したり、ブラウザで表示して全部テキストにコピペしてサイトごとに整形したりしました。ぶっちゃけ後者のほうが楽です。</p>
+<h3 id="apple-rss-generator">Apple RSS Generator</h3>
+<p>Appleの提供するiTuneのRSSジェネレータ。RSSなので検索できない以外はiTune Search APIとだいたい一緒。検索はできないが、2016年のものについてはジャンル指定検索もできジャケットの取得もここでできる。デフォルトより大きなジャケットを取得するにはurlの100x100を600x600などにすればいい。</p>
+<ul>
+<li>URL : <a href="https://rss.itunes.apple.com/jp/" target="_blank">https://rss.itunes.apple.com/jp/</a></li>
+<li>APIキー ：不要</li>
+<li>取れるメタ情報 : ジャンル、価格、国、発売日など</li>
+<li>ジャケット取得 ：可(600x600程度までは少なくともある)</li>
+<li>Rate limit  : 基準はないが、あまり多くはない</li>
+<li>Pythonとの連携  : URL作ってrequestsで叩く</li>
+<li>コメント ：ドキュメントが暗黒　詳細はituneの章で。</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="1.html" class="navigation navigation-prev " aria-label="Previous page: 概要">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="3.html" class="navigation navigation-next " aria-label="Next page: メタ情報とジャケットを集める">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"楽曲名を集める","level":"1.4","depth":1,"next":{"title":"メタ情報とジャケットを集める","level":"1.5","depth":1,"path":"src/3.md","ref":"src/3.md","articles":[]},"previous":{"title":"概要","level":"1.3","depth":1,"path":"src/1.md","ref":"src/1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"src/2.md","mtime":"2016-12-01T11:09:41.000Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-09-11T16:47:19.073Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
