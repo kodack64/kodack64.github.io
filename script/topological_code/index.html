@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="kodack64 GitHub Page">
+    <title>QuantumCircuitDrawer Demo</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../stylesheets/stylesheet.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/two.js/0.7.8/two.min.js"></script>
+    <script type="text/javascript" src="./topological_code_drawer.js"></script>
+</head>
+
+<body>
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+            <a id="forkme_banner" href="https://github.com/kodack64">View on GitHub</a>
+            <h1 id="project_title">量子回路の可視化</h1>
+        </header>
+    </div>
+    <div id="main_content_wrap" class="outer">
+        <section id="main_content" class="inner">
+            <p>
+                Two.jsを利用した量子回路の可視化ライブラリ
+                <ul>
+                    <li><a href="https://github.com/kodack64/gitbook-plugin-surfacecode">Githubのページ</a></li>
+                    <li><a href="../../index.html">戻る</a></li>
+            </p>
+            <p>
+                <h3>Surface code</h3>
+                エッジとスタビライザーをクリックするとエラーが変化します。
+                <pre><code>&lt;div id="surface_code"&gt;&lt;/div&gt;
+&lt;script&gt;
+const surface_code = {
+    size: 600,
+    type: "surface_code",
+    distance: 5,
+};
+const element = document.getElementById("surface_code");
+const obj = new TopologicalCodeDrawer(element, surface_code);
+obj.draw();
+&lt;/script&gt;</pre></code>
+                <div id="surface_code"></div>
+            </p>
+            <p>
+                <h3>Surface code (periodic boundary)</h3>
+                エッジの反応をなくして初期エラーを乗せる。
+                <pre><code>&lt;div id="surface_code_periodic"&gt;&lt;/div&gt;
+&lt;script&gt;
+const surface_code_periodic = {
+    size: 600,
+    type: "surface_code_periodic",
+    distance: 6,
+    show_dual: false,
+    bind_error: false,
+    initial_error: [
+        [5, 10, 30, 50, 49],
+        []
+    ],
+};
+const element = document.getElementById("surface_code_periodic");
+const obj = new TopologicalCodeDrawer(element, surface_code_periodic);
+obj.draw();
+&lt;/script&gt;</pre></code>
+                <div id="surface_code_periodic"></div>
+            </p>
+            <p>
+                <h3>Surface code (rotated)</h3>
+                スタビライザーの反応をなくしてシンドローム値の初期値を設定
+                <pre><code>&lt;div id="surface_code_rotate"&gt;&lt;/div&gt;
+&lt;script&gt;
+const surface_code_rotate = {
+    size: 600,
+    type: "surface_code_rotate",
+    distance: 7,
+    show_primal: false,
+    bind_stabilizer: false,
+    initial_syndrome: [
+        [],
+        [3, 7, 20, 30]
+    ],
+};
+const element = document.getElementById("surface_code_rotate");
+const obj = new TopologicalCodeDrawer(element, surface_code_rotate);
+obj.draw();
+&lt;/script&gt;</pre></code>
+                <div id="surface_code_rotate"></div>
+            </p>
+            <p>
+                <h3>666 Color Code</h3>
+                Color codeでは頂点と面をクリックしてエラーを乗せる。
+                <pre><code>&lt;div id="color_code_666"&gt;&lt;/div&gt;
+&lt;script&gt;
+const color_code_666 = {
+    size: 600,
+    type: "color_code_666",
+    distance: 7,
+    bind_stabilizer: false,
+    initial_syndrome: [3, 11],
+};
+const element = document.getElementById("color_code_666");
+const obj = new TopologicalCodeDrawer(element, color_code_666);
+obj.draw();
+&lt;/script&gt;</pre></code>
+                <div id="color_code_666"></div>
+            </p>
+            <p>
+                <h3>6666 Color Code (periodic boundary)</h3>
+                符号距離が4の倍数でない場合は上下末端が一周時に1マス分左にズレる。
+                <pre><code>&lt;div id="color_code_666_periodic"&gt;&lt;/div&gt;
+&lt;script&gt;
+const color_code_666_periodic = {
+    size: 600,
+    type: "color_code_666_periodic",
+    distance: 8,
+    initial_error: [5, 21],
+};
+const element = document.getElementById("color_code_666_periodic");
+const obj = new TopologicalCodeDrawer(element, color_code_666_periodic);
+obj.draw();
+&lt;/script&gt;</pre></code>
+                <div id="color_code_666_periodic"></div>
+            </p>
+        </section>
+    </div>
+    <div id="footer_wrap" class="outer">
+        <footer class="inner">
+            <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+        </footer>
+    </div>
+
+    <script>
+        const surface_code = {
+            size: 600,
+            type: "surface_code",
+            distance: 5,
+        };
+        const surface_code_periodic = {
+            size: 600,
+            type: "surface_code_periodic",
+            distance: 6,
+            show_dual: false,
+            bind_error: false,
+            initial_error: [
+                [5, 10, 30, 50, 49],
+                []
+            ],
+        };
+        const surface_code_rotate = {
+            size: 600,
+            type: "surface_code_rotate",
+            distance: 7,
+            show_primal: false,
+            bind_stabilizer: false,
+            initial_syndrome: [
+                [],
+                [3, 7, 20, 30]
+            ],
+        };
+        const color_code_666 = {
+            size: 600,
+            type: "color_code_666",
+            distance: 7,
+            bind_stabilizer: false,
+            initial_syndrome: [3, 11],
+        };
+        const color_code_666_periodic = {
+            size: 600,
+            type: "color_code_666_periodic",
+            distance: 8,
+            initial_error: [5, 21],
+        };
+        dict = {
+            "surface_code": surface_code,
+            "surface_code_periodic": surface_code_periodic,
+            "surface_code_rotate": surface_code_rotate,
+            "color_code_666": color_code_666,
+            "color_code_666_periodic": color_code_666_periodic,
+        }
+        for (let name in dict) {
+            info = dict[name];
+            const element = document.getElementById(name);
+            const obj = new TopologicalCodeDrawer(element, info);
+            obj.draw();
+        }
+    </script>
+</body>
+
+</html>

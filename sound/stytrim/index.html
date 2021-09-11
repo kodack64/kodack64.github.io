@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="kodack64 GitHub Page">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../stylesheets/stylesheet.css">
+    <title>styファイルの抽出</title>
+</head>
+
+<body>
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+            <a id="forkme_banner" href="https://github.com/kodack64">View on GitHub</a>
+            <h1 id="project_title">テスト</h1>
+        </header>
+    </div>
+    <div id="main_content_wrap" class="outer">
+        <section id="main_content" class="inner">
+            <p>
+                <h4>必要なもの/環境</h4>
+                <ul>
+                    <li><a href="./miditool.bxx2mid.jar">本体</a></li>
+                    <li>javaの実行環境</li>
+                </ul>
+            </p>
+            <p>
+                <h4>概要</h4>
+                <p>
+                    バルクファイルからstyファイルを取り出します。 取り出せるのはユーザー1～48のレジストです。 デフォルトのレジストもユーザーに保存するとこれで取り出して書き換えが出来ます。 エレクトーンはスタイルの読み込みはできても書き出しは出来ませんがこれで書き出せます。
+                </p>
+                <h5>主な用途</h5>
+                <ul>
+                    <li>ELSで編集したリズムの確認をPCでしたい。</li>
+                    <li>デフォルトのレジストのスタイルが欲しい。</li>
+                    <li>スタイルファイルのテンプレートが欲しい。</li>
+                    <li>midiにエクスクルーシブを書いてスタイルを作ろうとすると、XGのバリエーションエフェクトがデフォルトでインサートに鳴っているのをシステムに変えなければ、ELSの方のバリエーションエフェクトが無効になってしまうという面倒な事情があるので、いちから作るよりここから空ファイルを作ったほうが安全</li>
+                </ul>
+            </p>
+            <p>
+                <h4>ソースコード</h4>
+                <a href="https://github.com/kodack64/miditools">github</a>にあります。<br>
+            </p>
+            <p>
+                <h4>拍子変えるやりかた</h4>
+                <ul>
+                    <li><a href="http://takabosoft.com/domino">Dominoのver1.40以降</a>が必要です。</li>
+                    <li>miditool.bxx2mid.jarを起動する。起動できなければ<a href="http://www.java.com/ja/">ここ</a>からjavaの環境をインストール。</li>
+                    <li>"Select ELS bulk Data File(.Bxx)"を押して、何か適当なELSのソングファイルのフォルダの中にあるREG_001.B00みたいな名前のを選択。</li>
+                    <li>1-48を選択できるコンボボックスから切り出したいユーザリズムの番号を選択。</li>
+                    <li>".Bxx->.mid(type0)"ボタンを押すと、REG_001.B00のフォルダにREG_001_User_x.midができる</li>
+                    <li>REG_001_User_x.midをdominoで読み込んで画面上部に[MEAS 1:0]となっている状態で（カーソルが曲の一番最初になっている状態で）メニューの「挿入→拍子」で作りたいスタイルの拍子を入力</li>
+                    <li>メニューの「ファイル→SMF書き出し」から書き出しウィンドウを出して、フォーマットの「format 1(通常はこちら)」を「format 0」にする。</li>
+                    <li>適当な名前で書きだして拡張子を.midから.styに変えてUSBメモリに入れる。</li>
+                    <li>ELSから「"PATTERN"ボタン→"ファイル"タブ→"選択"ボタン」でさっきの.styを読み込む。設定に戻れば目的の拍子に多分なっているのを確認したらユーザリズムに保存。</li>
+                    <li>↑で読み込んでいますで固まることがあって、そうなったら多分どうしようもないのでELSを再起動してください。多分原因は「format0での出力をしていない」か、「MEAS 1:0以外で拍子が変わっている」かのどっちかだと思います。</li>
+                </ul>
+                <h4>別のやり方</h4>
+                <ul>
+                    <li>Dominoで新規作成で新しいのを作る。(Domino Aとする)</li>
+                    <li>Dominoをもう一つ開いて、そっちでは<a href="REG_001_User_1.mid">これ</a>を落として開く(Domino Bとする)。</li>
+                    <li>Domino Bの左上にある「A1」とか書いてある部分をクリックして、「A1 System Setup」に変える。</li>
+                    <li>左のところにある、"Ex:f0h ~~~"ってやつを全部ドラッグして選択して、右クリック→コピー。</li>
+                    <li>Domino Aでも「A1 Setup」に変えて、メニューの鉛筆マークが選択されているのを隣の範囲選択マークに変えて、カーソルを曲の一番最初にして（鍵盤の少し右で左クリックすると赤い線が一番左に行きます。）、そのまま鍵盤の少し右を右クリックしてペースト。この時、Ex:f0hとかが入ってくる奴のうち、最後以外がMea1Tick0Step0になっているのを確認してください。</li>
+                    <li>カーソルが一番最初なのを確認して、Domino Aでメニューの「マーク→マークの挿入」で「SFF1」というマークを作成。マークの名前は余計な文字やスペースを入れたり小文字にしないでください。</li>
+                    <li>カーソルを2小節目に合わせて「Main A」というマークを作成</li>
+                    <li>「ファイル→SMFの書き出し」で「format 1(通常はこちら)」を「format 0」にして書き出し。</li>
+                    <li>拡張子をmidからstyに変更して、USBに入れて読み込むと多分出来る。</li>
+                </ul>
+            </p>
+            <a href="../../index.html">戻る</a>
+        </section>
+    </div>
+    <div id="footer_wrap" class="outer">
+        <footer class="inner">
+            <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+        </footer>
+    </div>
+</body>
+
+</html>

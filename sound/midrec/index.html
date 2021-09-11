@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="kodack64 GitHub Page">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../stylesheets/stylesheet.css">
+    <title>midirec</title>
+</head>
+
+<body>
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+            <a id="forkme_banner" href="https://github.com/kodack64">View on GitHub</a>
+            <h1 id="project_title">テスト</h1>
+        </header>
+    </div>
+    <div id="main_content_wrap" class="outer">
+        <section id="main_content" class="inner">
+            <p>
+                <h4>必要なもの/環境</h4>
+                <ul>
+                    <li><a href="./miditool.midrec.jar">midiの信号をフックする</a></li>
+                    <li><a href="http://www.yamaha.co.jp/download/usb_midi/">ヤマハのmidi-usbドライバ</a></li>
+                    <li>STAGEAかD-Deck</li>
+                    <li>ELSとPCを繋ぐUSBケーブル(<a href="http://www.amazon.co.jp/ELECOM-%E6%A5%B5%E7%B4%B0USB%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB-2-5m-%E3%83%9B%E3%83%AF%E3%82%A4%E3%83%88-USB2-X25WH/dp/B000E7RG6A">こういうの</a>)</li>
+                    <li>javaの実行環境</li>
+                </ul>
+            </p>
+            <p>
+                <h4>概要</h4>
+                <p>
+                    指定の入力からmidiの信号をキャッチしてメッセージを表示します。ELSの楽器番号とかスイッチメッセージを一々マニュアルで確認するのがだるい場合はELSとPCつないでこれで確認すると早いです。 普通のシーケンサでこれやろうとするとELSからのクロックをキャッチしまくってきりがないので、ELSからのメッセージを確認したい時に便利です。
+                </p>
+            </p>
+            <p>
+                <h4>ソースコード</h4>
+                <a href="https://github.com/kodack64/miditools">github</a>にあります。<br>
+            </p>
+            <p>
+                <h4>使い方</h4>
+                <ul>
+                    <li>ELSとPCを繋ぐUSBで繋ぐ</li>
+                    <li>miditool.midrec.jarを起動</li>
+                    <li>Electone-1とかDDK-1とかを選んでReserve</li>
+                    <li>ELSでメッセージを知りたい操作をする</li>
+                    <li>画面に出てきたエクスクルーシブをxgのmidiに放り込めばそのとおりに動きます！凄い！！！！</li>
+                </ul>
+                一覧にElectoneとかDDKが出ない場合
+                <ul>
+                    <li>起動時にはまだ認識されていなかった可能性があるので、Refreshで接続一覧を更新してください。</li>
+                    <li>ヤマハのusb-midiドライバを入れてなければ入れてください。</li>
+                </ul>
+            </p>
+            <a href="../../index.html">戻る</a>
+        </section>
+    </div>
+    <div id="footer_wrap" class="outer">
+        <footer class="inner">
+            <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+        </footer>
+    </div>
+</body>
+
+</html>

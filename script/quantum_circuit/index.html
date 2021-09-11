@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="kodack64 GitHub Page">
+    <title>QuantumCircuitDrawer Demo</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../stylesheets/stylesheet.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/two.js/0.7.8/two.min.js"></script>
+    <script type="text/javascript" src="./drawer.js"></script>
+</head>
+
+<body>
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+            <a id="forkme_banner" href="https://github.com/kodack64">View on GitHub</a>
+            <h1 id="project_title">量子回路の可視化</h1>
+        </header>
+    </div>
+    <div id="main_content_wrap" class="outer">
+        <section id="main_content" class="inner">
+            <p>
+                Two.jsを利用した量子回路の可視化ライブラリ
+                <ul>
+                    <li><a href="https://github.com/kodack64/gitbook-plugin-quantumcircuit">Githubのページ</a></li>
+                    <li><a href="../../index.html">戻る</a></li>
+            </p>
+
+            <p>
+                <h3>ベル状態生成</h3>
+                <pre><code>&lt;div id="bell"&gt;&lt;/div&gt;
+&lt;script&gt;
+const bell = {
+    operations: [
+        {name: "H", step: 0, target: [0], color_fill: "#eeeeee", color_stroke: "#ee0000",}, 
+        {name: "X", control: [0], step: 1, target: [1] }, 
+    ]
+}
+const element = document.getElementById("bell");
+const obj = new QuantumCircuitDrawerTwo(element, bell);
+obj.draw();
+&lt;/script&gt;</code></pre>
+                <div id="bell"></div>
+            </p>
+            <p>
+                <h3>量子テレポーテーション</h3>
+                <pre><code>&lt;div id="teleport"&gt;&lt;/div&gt;
+&lt;script&gt;
+const teleport = {
+    qubit_name: { 0: "|ψ⟩", 1: "|0⟩", 2: "|0⟩",},
+    register_name: {0: "m0", 1: "m1", },
+    output_name: { 2: "|ψ⟩", },
+    operations: [
+        { name: "H", step: 0, target: [1]}, 
+        { name: "X", step: 1, target: [2], control: [1], }, 
+        { name: "X", step: 2, target: [1], control: [0], }, 
+        { name: "X", step: 3, target: [0], measurement: true, outcome: [0], }, 
+        { name: "Z", step: 4, target: [1], measurement: true, outcome: [1], }, 
+        { name: "X", step: 5, target: [2], condition: [1], }, 
+        { name: "Z", step: 6, target: [2], condition: [0], }, 
+    ]
+}        
+const element = document.getElementById("teleport");
+const obj = new QuantumCircuitDrawerTwo(element, teleport);
+obj.draw();
+&lt;/script&gt;</code></pre>
+                <div id="teleport"></div>
+            </p>
+            <p>
+                <h3>適当なデモ</h3>
+                <pre><code>&lt;div id="demo"&gt;&lt;/div&gt;
+&lt;script&gt;
+const demo = {
+    num_qubit: 5,
+    num_register: 3,
+    qubit_name: { 0: "q0", 2: "a0", },
+    register_name: { 1: "ans", },
+    output_name: { 0: "out", },
+    operations: [
+        { name: "X", step: 0, target: [0] }, 
+        { name: "U3", step: 0, target: [1] }, 
+        { name: "RZZZ", step: 1, target: [1, 2, 3] }, 
+        { name: "RZZ", step: 2, target: [1, 3] }, 
+        { name: "X", step: 3, target: [1, 3], control: [2], control_neg: [0], }, 
+        { name: "Z", step: 4, target: [2], control: [3], }, 
+        { name: "SWAP", step: 4, target: [0, 1], }, 
+        { name: "WIRE", step: 5, target: [1, 0], }, 
+        { name: "WIRE", step: 5, target: [2, 3], }, 
+        { name: "WIRE", step: 5, target: [0, 2], }, 
+        { name: "WIRE", step: 5, target: [3, 1], }, 
+        { name: "X", step: 6, target: [1], outcome: [1], measurement: true, }, 
+        { name: "X", step: 7, target: [2], outcome: [2], measurement: true, }, 
+        { name: "V(Θ)", step: 8, target: [0, 2], condition: [1], }, 
+        { name: "X", step: 9, target: [1], classical: true,}, 
+    ]
+}
+const element = document.getElementById("demo");
+const obj = new QuantumCircuitDrawerTwo(element, demo);
+obj.draw();
+&lt;/script&gt;</pre></code>
+                <div id="demo"></div>
+            </p>
+            <a href="../../index.html">戻る</a>
+        </section>
+    </div>
+    <div id="footer_wrap" class="outer">
+        <footer class="inner">
+            <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+        </footer>
+    </div>
+
+    <script>
+        const bell = {
+            operations: [{
+                name: "H",
+                step: 0,
+                target: [0],
+                color_fill: "#eeeeee",
+                color_stroke: "#ee0000",
+            }, {
+                name: "X",
+                control: [0],
+                step: 1,
+                target: [1]
+            }, ]
+        }
+        const teleport = {
+            qubit_name: {
+                0: "|ψ⟩",
+                1: "|0⟩",
+                2: "|0⟩",
+            },
+            register_name: {
+                0: "m0",
+                1: "m1",
+            },
+            output_name: {
+                2: "|ψ⟩",
+            },
+            operations: [{
+                name: "H",
+                step: 0,
+                target: [1]
+            }, {
+                name: "X",
+                step: 1,
+                target: [2],
+                control: [1],
+            }, {
+                name: "X",
+                step: 2,
+                target: [1],
+                control: [0],
+            }, {
+                name: "X",
+                step: 3,
+                target: [0],
+                measurement: true,
+                outcome: [0],
+            }, {
+                name: "Z",
+                step: 4,
+                target: [1],
+                measurement: true,
+                outcome: [1],
+            }, {
+                name: "X",
+                step: 5,
+                target: [2],
+                condition: [1],
+            }, {
+                name: "Z",
+                step: 6,
+                target: [2],
+                condition: [0],
+            }, ]
+        }
+        const demo = {
+            num_qubit: 5,
+            num_register: 3,
+            qubit_name: {
+                0: "q0",
+                2: "a0",
+            },
+            register_name: {
+                1: "ans",
+            },
+            output_name: {
+                0: "out",
+            },
+            operations: [{
+                name: "X",
+                step: 0,
+                target: [0]
+            }, {
+                name: "U3",
+                step: 0,
+                target: [1]
+            }, {
+                name: "RZZZ",
+                step: 1,
+                target: [1, 2, 3]
+            }, {
+                name: "RZZ",
+                step: 2,
+                target: [1, 3]
+            }, {
+                name: "X",
+                step: 3,
+                target: [1, 3],
+                control: [2],
+                control_neg: [0],
+            }, {
+                name: "Z",
+                step: 4,
+                target: [2],
+                control: [3],
+            }, {
+                name: "SWAP",
+                step: 4,
+                target: [0, 1],
+            }, {
+                name: "WIRE",
+                step: 5,
+                target: [1, 0],
+            }, {
+                name: "WIRE",
+                step: 5,
+                target: [2, 3],
+            }, {
+                name: "WIRE",
+                step: 5,
+                target: [0, 2],
+            }, {
+                name: "WIRE",
+                step: 5,
+                target: [3, 1],
+            }, {
+                name: "X",
+                step: 6,
+                target: [1],
+                outcome: [1],
+                measurement: true,
+            }, {
+                name: "X",
+                step: 7,
+                target: [2],
+                outcome: [2],
+                measurement: true,
+            }, {
+                name: "V(Θ)",
+                step: 8,
+                target: [0, 2],
+                condition: [1],
+            }, {
+                name: "X",
+                step: 9,
+                target: [1],
+                classical: true,
+            }, ]
+        }
+        map = {
+            "bell": bell,
+            "teleport": teleport,
+            "demo": demo
+        };
+        for (let name in map) {
+            const circuit = map[name];
+            const element = document.getElementById(name);
+            const obj = new QuantumCircuitDrawerTwo(element, circuit);
+            obj.draw();
+        }
+    </script>
+</body>
+
+</html>

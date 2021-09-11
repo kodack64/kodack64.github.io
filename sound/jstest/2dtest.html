@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <title>JS Test</title>
+    <script type="text/javascript">
+        var MyVector = function (ix, iy) {
+            this.x = ix;
+            this.y = iy;
+        }
+        var Field = function(){
+            this.width;
+            this.height;
+            this.init = function () {
+                this.width = window.document.getElementById("screen").width;
+                this.height = window.document.getElementById("screen").height;
+            }
+            this.draw = function(context){
+                context.clearRect(0, 0, this.width, this.height);
+            }
+        }
+        var Player = function() {
+            var image = new Image();
+            var pos = new MyVector(0, 0);
+            var vel = new MyVector(0, 0);
+            var acc = new MyVector(0, 0);
+            var size = 32;
+            image.src = "images/ball.png";
+            this.init = function () {
+                pos.x = Math.random() * field.width;
+                pos.y = Math.random() * field.height;
+                vel.x = vel.y = acc.x = acc.y = 0;
+            }
+            this.move = function () {
+                vel.x += acc.x; vel.y += acc.y + gravity;
+                vel.x *= damp; vel.y *= damp;
+                nx = pos.x + vel.x;
+                ny = pos.y + vel.y;
+                if ( nx < 0 || nx > field.width) vel.x *= -1;
+                if ( ny < 0 || ny > field.height) vel.y *= -1;
+                pos.x += vel.x; pos.y += vel.y;
+                acc.x = acc.y = 0;
+            }
+            this.draw = function(context){
+                context.drawImage(image, 0, 0, image.width, image.height, pos.x-size/2 , pos.y-size/2 , size,size);
+            }
+            this.shot = function (ax, ay) {
+                acc.x += ax;
+                acc.y += ay;
+            }
+            this.getPos = function(){
+                return pos;
+            }
+            this.getSize = function () {
+                return size;
+            }
+
+        }
+        var Coin = function () {
+            var pos = new MyVector(0, 0);
+            var image = new Image();
+            var isAlive = true;
+            var size = 32;
+            this.init = function () {
+                image.src = "images/coin.png";
+                pos.x = Math.random() * field.width;
+                pos.y = Math.random() * field.height;
+                isAlive = true;
+            }
+            this.draw = function (context) {
+                if (isAlive) {
+                    context.drawImage(image, 0, 0, image.width, image.height, pos.x -size/2, pos.y -size / 2,size,size);
+                }
+            }
+            this.getPos = function(){
+                return pos;
+            }
+            this.getIsAlive = function(){
+                return isAlive;
+            }
+            this.kill = function () {
+                isAlive = false;
+            }
+            this.getSize = function () {
+                return size;
+            }
+        }
+        var Information = function () {
+            var coinAcq = 0;
+            var startTime;
+            var endTime;
+            this.init = function () {
+                coinAcq = 0;
+                startTime = new Date();
+            }
+            this.getCoin = function(){
+                coinAcq++;
+            }
+            this.update = function () {
+                if (coinAcq < coinCount) {
+                    endTime = new Date();
+                }
+            }
+            this.draw = function (context) {
+                context.fillStyle = "rgb(0,0,0)";
+                context.font = "bold 16px 'ＭＳ　Ｐゴシック'";
+                context.fillText("Coin : " + coinAcq + "/" + coinCount,0,20);
+                context.fillText("Time : " + (endTime-startTime) + " ms",0,40);
+            }
+        }
+
+        var damp = 0.98;
+        var shot = 8.0;
+        var gravity = 0.1;
+        var coinCount = 10;
+        var screenMergine = 30;
+
+        var field = new Field();
+        var player = new Player();
+        var information = new Information();
+        var coins = new Array();
+
+        var init = function () {
+            field.init();
+            player.init();
+            information.init();
+            for (ind = 0; ind < coinCount; ind++) {
+                coins.push(new Coin());
+                coins[ind].init();
+            }
+            setInterval(loop, 1000 / 60);
+            render();
+        }
+        var loop = function () {
+            player.move();
+            checkCollision();
+            information.update();
+            render();
+        }
+        var checkCollision = function () {
+            var range = (player.getSize() + coins[0].getSize()) / 2;
+            ppos = player.getPos();
+            for (ind = 0; ind < coinCount ; ind++) {
+                if (coins[ind].getIsAlive()) {
+                    cpos = coins[ind].getPos();
+                    distance = Math.sqrt(Math.pow(cpos.x - ppos.x, 2) + Math.pow(cpos.y - ppos.y, 2));
+                    if (distance < range) {
+                        information.getCoin();
+                        coins[ind].kill();
+                    }
+                }
+            }
+        }
+        var render = function () {
+            var canvas = window.document.getElementById("screen");
+            var context = canvas.getContext("2d");
+            field.draw(context);
+            player.draw(context);
+            for (ind = 0; ind < coinCount ; ind++) {
+                coins[ind].draw(context);
+            }
+            information.draw(context);
+        }
+        var keyCallback = function(event){
+            switch (event.keyCode) {
+                case 37: // left
+                    player.shot(-shot, 0);
+                    break;
+                case 39: // right
+                    player.shot(shot, 0);
+                    break;
+                case 38: // up
+                    player.shot(0, -shot);
+                    break;
+                case 40: // down
+                    player.shot(0, shot);
+                    break;
+                case 32: // enter
+                    reset();
+                    break;
+            }
+        }
+        var reset = function () {
+            window.document.getElementById("screen").width = window.innerWidth - screenMergine;
+            window.document.getElementById("screen").height = window.innerHeight - screenMergine;
+            player.init();
+            field.init();
+            for (ind = 0; ind < coinCount ; ind++) {
+                coins[ind].init();
+            }
+            information.init();
+        }
+
+
+        window.onload = function () {
+            window.document.getElementById("screen").width = window.innerWidth - screenMergine;
+            window.document.getElementById("screen").height = window.innerHeight - screenMergine;
+            init();
+        }
+        window.onkeydown = function (event) {
+            keyCallback(event);
+        }
+
+    </script>
+</head>
+<body>
+    <canvas id="screen" width="400" height="400" style="background-color:lightblue;"/>
+</body>
+</html>
